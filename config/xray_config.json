@@ -1,7 +1,7 @@
 {
   "log": {
-    "access": "/var/lib/marzban/log/access.log",
-    "error": "/var/lib/marzban/log/error.log",
+    "access": "/var/lib/vanish/log/access.log",
+    "error": "/var/lib/vanish/log/error.log",
     "loglevel": "error",
     "dnsLog": false
   },
@@ -156,8 +156,8 @@
           "certificates": [
             {
               "buildChain": false,
-              "certificateFile": "/var/lib/marzban/certs/fullchain.pem",
-              "keyFile": "/var/lib/marzban/certs/key.pem",
+              "certificateFile": "/var/lib/vanish/certs/fullchain.pem",
+              "keyFile": "/var/lib/vanish/certs/key.pem",
               "ocspStapling": 3600,
               "oneTimeLoading": false,
               "usage": "encipherment"

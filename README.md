@@ -55,7 +55,7 @@ SERVER 2
    - Important: it is recommended to choose one suitable connection type and use it for optimal performance. You can disable all incoming connections except the one marked as STEAL. Disabling STEAL will result in losing access to the web interface, as this connection type is used for proxy management access.
    - Custom subcription [(by legiz)](https://github.com/legiz-ru/marz-sub).
    - Node for reverse proxy [(by blagodaren)](https://github.com/blagodaren/reverse-marz-node).
-   - Torrent blocker [(by kutovoys)](https://github.com/kutovoys/marzban-torrent-blocker).
+   - Torrent blocker [(by kutovoys)](https://github.com/kutovoys/vanish-torrent-blocker).
    - IP Limit [(by houshmand-2005)](https://github.com/houshmand-2005/V2IpLimit).
 2. Configuring NGINX reverse proxy on port 443.
 3. Providing security:
@@ -75,12 +75,12 @@ SERVER 2
 
 To begin configuring the server, simply run the following command in a terminal:
 ```sh
-bash <(curl -Ls https://github.com/cortez24rus/marz-reverse-proxy/raw/refs/heads/main/reverse_proxy_server.sh)
+bash <(curl -Ls https://github.com/SiberMix/marz-reverse-proxy/raw/refs/heads/main/reverse_proxy_server.sh)
 ```
 
 ### Selecting and installing a random template for the website:
 ```sh
-bash <(curl -Ls https://raw.githubusercontent.com/cortez24rus/marz-reverse-proxy/refs/heads/main/reverse_proxy_random_site.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/SiberMix/marz-reverse-proxy/refs/heads/main/reverse_proxy_random_site.sh)
 ```
 
 The script will then prompt you for the necessary configuration information:

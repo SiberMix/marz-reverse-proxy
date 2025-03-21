@@ -842,7 +842,7 @@ random_site() {
 # Генерация ключей
 generate_keys() {
     # Генерация пары ключей X25519 с использованием xray
-    local KEY_PAIR=$(docker exec marzban-marzban-1 xray x25519)
+    local KEY_PAIR=$(docker exec vanish-vanish-1 xray x25519)
     local PRIVATE_KEY=$(echo "$KEY_PAIR" | grep "Private key:" | awk '{print $3}')
     local PUBLIC_KEY=$(echo "$KEY_PAIR" | grep "Public key:" | awk '{print $3}')
 
@@ -958,47 +958,47 @@ marz_bot_install() {
     echo -e "1\n2\n1\n7" | bash <(curl -sSL https://houshmand-2005.github.io/v2iplimit.sh)
 
     #TORRENT_BAN
-    mkdir -p /var/lib/marzban/log/
+    mkdir -p /var/lib/vanish/log/
     echo -e '\n\n' | bash <(curl -fsSL git.new/install)
 
     sed -i \
         -e "s|^#\?\s*AdminChatID:.*$|AdminChatID: \"${ADMIN_ID}\"|" \
         -e "s|^#\?\s*AdminBotToken:.*$|AdminBotToken: \"${BOT_TOKEN_BAN_LIMIT_OR_TORRENT}\"|" \
-        -e "s|^#\?\s*LogFile:.*$|LogFile: \"/var/lib/marzban/log/access.log\"|" \
+        -e "s|^#\?\s*LogFile:.*$|LogFile: \"/var/lib/vanish/log/access.log\"|" \
         -e "s|^#\?\s*BlockDuration:.*$|BlockDuration: 1|" \
         /opt/torrent-blocker/config.yaml
 
     if [[ "$BOT_CHOISE" == "2" ]]; then
         jq '(.log) = {
-          "access": "/var/lib/marzban/log/access.log",
-          "error": "/var/lib/marzban/log/error.log",
+          "access": "/var/lib/vanish/log/access.log",
+          "error": "/var/lib/vanish/log/error.log",
           "loglevel": "error",
           "dnsLog": false
         }' xray_config.json > tmp.json && mv tmp.json xray_config.json
     fi
 }
 
-### Установка Marzban ###
+### Установка vanish ###
 panel_installation() {
     info " $(text 46) "
     cd ~/
-    DB_PATH="/var/lib/marzban/db.sqlite3"
+    DB_PATH="/var/lib/vanish/db.sqlite3"
     mkdir -p /usr/local/marz-rp/
     touch /usr/local/marz-rp/reinstallation_check
     NEW_UUID=$(cat /proc/sys/kernel/random/uuid)
     HASHED_PASSWORD=$(htpasswd -nbBC 12 "" "${PASSWORD}" | cut -d ':' -f 2)
 
-    # Установка и остановка Marzban
-    timeout 110 bash -c "$(curl -sL https://github.com/Gozargah/Marzban-scripts/raw/master/marzban.sh)" @ install
+    # Установка и остановка vanish
+    timeout 110 bash -c "$(curl -sL https://github.com/Gozargah/vanish-scripts/raw/master/vanish.sh)" @ install
     echo -e '\n\n' | bash <(curl -fsSL git.new/install)
     read PRIVATE_KEY0 PUBLIC_KEY0 <<< "$(generate_keys)"
     read PRIVATE_KEY1 PUBLIC_KEY1 <<< "$(generate_keys)"
-    marzban down
+    vanish down
 
     # Редактирование docker-compose.yml
-    cat >> /opt/marzban/docker-compose.yml <<EOF
-      - /etc/letsencrypt/live/$DOMAIN/fullchain.pem:/var/lib/marzban/certs/fullchain.pem
-      - /etc/letsencrypt/live/$DOMAIN/privkey.pem:/var/lib/marzban/certs/key.pem
+    cat >> /opt/vanish/docker-compose.yml <<EOF
+      - /etc/letsencrypt/live/$DOMAIN/fullchain.pem:/var/lib/vanish/certs/fullchain.pem
+      - /etc/letsencrypt/live/$DOMAIN/privkey.pem:/var/lib/vanish/certs/key.pem
 EOF
 
     # Редактирование .env
@@ -1008,12 +1008,12 @@ EOF
         -e "s|^#\?\s*XRAY_SUBSCRIPTION_URL_PREFIX.*$|XRAY_SUBSCRIPTION_URL_PREFIX = \"https://${DOMAIN}\"|" \
         -e "s|^#\?\s*XRAY_SUBSCRIPTION_PATH.*$|XRAY_SUBSCRIPTION_PATH = \"${SUBPATH}\"|" \
         -e "s|^#\?\s*TELEGRAM_DEFAULT_VLESS_FLOW.*$|TELEGRAM_DEFAULT_VLESS_FLOW = \"xtls-rprx-vision\"|" \
-        -e "s|^#\?\s*CUSTOM_TEMPLATES_DIRECTORY.*$|CUSTOM_TEMPLATES_DIRECTORY = \"/var/lib/marzban/templates/\"|" \
+        -e "s|^#\?\s*CUSTOM_TEMPLATES_DIRECTORY.*$|CUSTOM_TEMPLATES_DIRECTORY = \"/var/lib/vanish/templates/\"|" \
         -e "s|^#\?\s*SUBSCRIPTION_PAGE_TEMPLATE.*$|SUBSCRIPTION_PAGE_TEMPLATE = \"subscription/index.html\"|" \
         -e "s|^#\?\s*TELEGRAM_API_TOKEN.*$|TELEGRAM_API_TOKEN = \"${BOT_TOKEN_PANEL}\"|" \
         -e "s|^#\?\s*TELEGRAM_ADMIN_ID.*$|TELEGRAM_ADMIN_ID = \"${ADMIN_ID}\"|" \
         -e "s|^#\?\s*LOGIN_NOTIFY_WHITE_LIST.*$|LOGIN_NOTIFY_WHITE_LIST = \'127.0.0.1\'|" \
-        /opt/marzban/.env
+        /opt/vanish/.env
 
     # Скачивание и распаковка xray конфига
     while ! wget -q --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused https://raw.githubusercontent.com/cortez24rus/marz-reverse-proxy/refs/heads/main/config/xray_config.json; do
@@ -1030,9 +1030,9 @@ EOF
 
     marz_bot_install
 
-    rm -rf /var/lib/marzban/xray_config.json.*
-    mv /var/lib/marzban/xray_config.json /var/lib/marzban/xray_config.json.back
-    mv xray_config.json /var/lib/marzban/xray_config.json
+    rm -rf /var/lib/vanish/xray_config.json.*
+    mv /var/lib/vanish/xray_config.json /var/lib/vanish/xray_config.json.back
+    mv xray_config.json /var/lib/vanish/xray_config.json
     rm -rf xray_config*
 
     # Скачивание базы данных
@@ -1041,18 +1041,18 @@ EOF
         sleep 3
     done
     
-    rm -rf /var/lib/marzban/db.sqlite3.*
-    mv /var/lib/marzban/db.sqlite3 /var/lib/marzban/db.sqlite3.back
-    mv db.sqlite3 /var/lib/marzban/
+    rm -rf /var/lib/vanish/db.sqlite3.*
+    mv /var/lib/vanish/db.sqlite3 /var/lib/vanish/db.sqlite3.back
+    mv db.sqlite3 /var/lib/vanish/
 
     update_admins_proxies
     update_hosts
 
     # Настройка дизайна подписки
-    sudo wget -N -P /var/lib/marzban/templates/subscription/ https://raw.githubusercontent.com/cortez24rus/marz-sub/refs/heads/main/index.html
+    sudo wget -N -P /var/lib/vanish/templates/subscription/ https://raw.githubusercontent.com/cortez24rus/marz-sub/refs/heads/main/index.html
     systemctl stop torrent-blocker
     systemctl start torrent-blocker
-    timeout 7 marzban up
+    timeout 7 vanish up
 
     tilda "$(text 10)"
 }
@@ -1158,7 +1158,7 @@ EOF
 data_output() {
     tilda "$(text 10)"
     info " $(text 58) "
-    printf '0\n' | marzban status | grep --color=never -i ':'
+    printf '0\n' | vanish status | grep --color=never -i ':'
     echo
     out_data " $(text 59) " "https://${DOMAIN}/${WEBBASEPATH}/"
     if [[ $choise = "1" ]]; then

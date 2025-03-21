@@ -55,7 +55,7 @@
    - Важно: рекомендуется выбрать один подходящий тип подключения и использовать его для оптимальной работы. Вы можете отключить все входящие соединения, кроме того, которое отмечено как STEAL. Отключение STEAL приведет к потере доступа к веб-интерфейсу, так как этот тип соединения используется для доступа к управлению прокси.
    - Пользовательская подписка [(от legiz)](https://github.com/legiz-ru/marz-sub).
    - Node для реверс-прокси [(от blagodaren)](https://github.com/blagodaren/reverse-marz-node).
-   - Блокировщик торрентов [(от kutovoys)](https://github.com/kutovoys/marzban-torrent-blocker).
+   - Блокировщик торрентов [(от kutovoys)](https://github.com/kutovoys/vanish-torrent-blocker).
    - Ограничение по IP [(от houshmand-2005)](https://github.com/houshmand-2005/V2IpLimit).
 2. Настройку обратного прокси NGINX на порт 443.
 3. Обеспечение безопасности:
@@ -75,13 +75,13 @@
 
 Для начала настройки сервера выполните следующую команду в терминале:
 ```sh
-bash <(curl -Ls https://github.com/cortez24rus/marz-reverse-proxy/raw/refs/heads/main/reverse_proxy_server.sh)
+bash <(curl -Ls https://github.com/SiberMix/marz-reverse-proxy/raw/refs/heads/main/reverse_proxy_server.sh)
 ```
 
 
 ### Выбор и установка случайного шаблона для веб-сайта:
 ```sh
-bash <(curl -Ls https://github.com/cortez24rus/marz-reverse-proxy/raw/refs/heads/main/reverse_proxy_random_site.sh)
+bash <(curl -Ls https://github.com/SiberMix/marz-reverse-proxy/raw/refs/heads/main/reverse_proxy_random_site.sh)
 ```
 
 Скрипт запросит у вас необходимую конфигурационную информацию:
