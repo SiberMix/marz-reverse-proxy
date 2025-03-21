@@ -505,7 +505,7 @@ dns_adguard_home() {
     HASH=$(htpasswd -B -C 10 -n -b ${USERNAME} ${PASSWORD} | cut -d ":" -f 2)
 
     rm -f AdGuardHome/AdGuardHome.yaml
-    while ! wget -q --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused "https://github.com/SiberMix/xui-reverse-proxy/raw/refs/heads/main/adh/AdGuardHome.yaml" -O AdGuardHome/AdGuardHome.yaml; do
+    while ! wget -q --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused "https://raw.githubusercontent.com/cortez24rus/xui-reverse-proxy/refs/heads/main/adh/AdGuardHome.yaml" -O AdGuardHome/AdGuardHome.yaml; do
         warning " $(text 38) "
         sleep 3
     done
@@ -836,7 +836,7 @@ EOF
 
 # Выбор рандомного сайта для маскировки
 random_site() {
-    bash <(curl -Ls https://raw.githubusercontent.com/SiberMix/marz-reverse-proxy/refs/heads/main/reverse_proxy_random_site.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/cortez24rus/marz-reverse-proxy/refs/heads/main/reverse_proxy_random_site.sh)
 }
 
 # Генерация ключей
