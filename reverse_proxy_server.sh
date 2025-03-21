@@ -628,7 +628,7 @@ disable_ipv6() {
 ### WARP ###
 warp() {
     info " $(text 43) "
-    bash <(curl -Ls https://github.com/SiberMix/xui-reverse-proxy/raw/refs/heads/main/warp/xui-rp-warp.sh)
+    bash <(curl -Ls https://github.com/cortez24rus/xui-reverse-proxy/raw/refs/heads/main/warp/xui-rp-warp.sh)
     tilda "$(text 10)"
 }
 
@@ -836,7 +836,7 @@ EOF
 
 # Выбор рандомного сайта для маскировки
 random_site() {
-    bash <(curl -Ls https://raw.githubusercontent.com/cortez24rus/marz-reverse-proxy/refs/heads/main/reverse_proxy_random_site.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/SiberMix/marz-reverse-proxy/refs/heads/main/reverse_proxy_random_site.sh)
 }
 
 # Генерация ключей
@@ -989,7 +989,7 @@ panel_installation() {
     HASHED_PASSWORD=$(htpasswd -nbBC 12 "" "${PASSWORD}" | cut -d ':' -f 2)
 
     # Установка и остановка vanish
-    timeout 110 bash -c "$(curl -sL https://github.com/Gozargah/vanish-scripts/raw/master/vanish.sh)" @ install
+    timeout 110 bash -c "$(curl -sL https://raw.githubusercontent.com/SiberMix/vpn_seller/master/scripts/vanish_vpn.sh)" @ install
     echo -e '\n\n' | bash <(curl -fsSL git.new/install)
     read PRIVATE_KEY0 PUBLIC_KEY0 <<< "$(generate_keys)"
     read PRIVATE_KEY1 PUBLIC_KEY1 <<< "$(generate_keys)"
@@ -1049,7 +1049,7 @@ EOF
     update_hosts
 
     # Настройка дизайна подписки
-    sudo wget -N -P /var/lib/vanish/templates/subscription/ https://raw.githubusercontent.com/SiberMix/marz-sub/refs/heads/main/index.html
+    sudo wget -N -P /var/lib/vanish/templates/subscription/ https://raw.githubusercontent.com/cortez24rus/marz-sub/refs/heads/main/index.html
     systemctl stop torrent-blocker
     systemctl start torrent-blocker
     timeout 7 vanish up
