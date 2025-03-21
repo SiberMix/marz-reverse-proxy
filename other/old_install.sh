@@ -502,7 +502,7 @@ dns_adguard_home() {
     HASH=$(htpasswd -B -C 10 -n -b ${USERNAME} ${PASSWORD} | cut -d ":" -f 2)
 
     rm -f AdGuardHome/AdGuardHome.yaml
-    while ! wget -q --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused "https://github.com/cortez24rus/xui-reverse-proxy/raw/refs/heads/main/adh/AdGuardHome.yaml" -O AdGuardHome/AdGuardHome.yaml; do
+    while ! wget -q --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused "https://github.com/SiberMix/xui-reverse-proxy/raw/refs/heads/main/adh/AdGuardHome.yaml" -O AdGuardHome/AdGuardHome.yaml; do
         warning " $(text 38) "
         sleep 3
     done
@@ -625,7 +625,7 @@ disable_ipv6() {
 ### WARP ###
 warp() {
     info " $(text 43) "
-    bash <(curl -Ls https://github.com/cortez24rus/xui-reverse-proxy/raw/refs/heads/main/warp/xui-rp-warp.sh)
+    bash <(curl -Ls https://github.com/SiberMix/xui-reverse-proxy/raw/refs/heads/main/warp/xui-rp-warp.sh)
     tilda "$(text 10)"
 }
 
@@ -673,7 +673,7 @@ issuance_of_certificates() {
 # Prometheus
 monitoring() {
     info " $(text 66) "
-    bash <(curl -Ls https://github.com/cortez24rus/grafana-prometheus/raw/refs/heads/main/prometheus_node_exporter.sh)
+    bash <(curl -Ls https://github.com/SiberMix/grafana-prometheus/raw/refs/heads/main/prometheus_node_exporter.sh)
     tilda "$(text 10)"
 }
 
@@ -901,7 +901,7 @@ EOF
 
 # Выбор рандомного сайта для маскировки
 random_site() {
-    bash <(curl -Ls https://github.com/cortez24rus/marz-reverse-proxy/raw/refs/heads/main/marz-rp-random-site.sh)
+    bash <(curl -Ls https://github.com/SiberMix/marz-reverse-proxy/raw/refs/heads/main/marz-rp-random-site.sh)
 }
 
 # Генерация ключей
@@ -1001,7 +1001,7 @@ EOF
 
 marz_bot_install() {    
     # IP_LIMIT
-    while ! wget -q --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused https://raw.githubusercontent.com/cortez24rus/marz-reverse-proxy/refs/heads/main/config/iplimit_config.json; do
+    while ! wget -q --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused https://raw.githubusercontent.com/SiberMix/marz-reverse-proxy/refs/heads/main/config/iplimit_config.json; do
         warning " $(text 38) "
         sleep 3
     done
@@ -1080,7 +1080,7 @@ EOF
         /opt/vanish/.env
 
     # Скачивание и распаковка xray конфига
-    while ! wget -q --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused https://raw.githubusercontent.com/cortez24rus/marz-reverse-proxy/refs/heads/main/config/xray_config.gpg; do
+    while ! wget -q --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused https://raw.githubusercontent.com/SiberMix/marz-reverse-proxy/refs/heads/main/config/xray_config.gpg; do
         warning " $(text 38) "
         sleep 3
     done
@@ -1106,7 +1106,7 @@ EOF
     rm -rf xray_config*
 
     # Скачивание базы данных
-    while ! wget -q --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused https://raw.githubusercontent.com/cortez24rus/marz-reverse-proxy/refs/heads/main/database/db.sqlite3; do
+    while ! wget -q --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused https://raw.githubusercontent.com/SiberMix/marz-reverse-proxy/refs/heads/main/database/db.sqlite3; do
         warning " $(text 38) "
         sleep 3
     done
@@ -1119,7 +1119,7 @@ EOF
     update_hosts
 
     # Настройка дизайна подписки
-    sudo wget -N -P /var/lib/vanish/templates/subscription/  https://raw.githubusercontent.com/cortez24rus/marz-sub/refs/heads/main/index.html
+    sudo wget -N -P /var/lib/vanish/templates/subscription/  https://raw.githubusercontent.com/SiberMix/marz-sub/refs/heads/main/index.html
     systemctl stop torrent-blocker
     systemctl start torrent-blocker
     timeout 5 vanish up

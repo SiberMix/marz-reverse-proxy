@@ -108,4 +108,4 @@ bash <(curl -Ls https://github.com/SiberMix/marz-reverse-proxy/raw/refs/heads/ma
 -----
 
 ## Количество звезд по времени
-[![Stargazers over time](https://starchart.cc/cortez24rus/marz-reverse-proxy.svg?variant=adaptive)](https://starchart.cc/cortez24rus/marz-reverse-proxy)
+[![Stargazers over time](https://starchart.cc/SiberMix/marz-reverse-proxy.svg?variant=adaptive)](https://starchart.cc/SiberMix/marz-reverse-proxy)

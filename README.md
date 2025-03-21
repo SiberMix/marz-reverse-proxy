@@ -107,4 +107,4 @@ The script will then prompt you for the necessary configuration information:
 -----
 
 ## Stargazers over time
-[![Stargazers over time](https://starchart.cc/cortez24rus/marz-reverse-proxy.svg?variant=adaptive)](https://starchart.cc/cortez24rus/marz-reverse-proxy)
+[![Stargazers over time](https://starchart.cc/SiberMix/marz-reverse-proxy.svg?variant=adaptive)](https://starchart.cc/SiberMix/marz-reverse-proxy)

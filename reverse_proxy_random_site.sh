@@ -29,7 +29,7 @@ cd /usr/local/reverse_proxy/ || { msg_err "Не удалось перейти в
 
 if [[ ! -d "simple-web-templates-main" ]]; then
     msg_inf "Скачиваем шаблоны..."
-    while ! wget -q --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused "https://github.com/cortez24rus/simple-web-templates/archive/refs/heads/main.zip"; do
+    while ! wget -q --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused "https://github.com/SiberMix/simple-web-templates/archive/refs/heads/main.zip"; do
         msg_err "Скачивание не удалось, пробуем снова..."
         sleep 3
     done
